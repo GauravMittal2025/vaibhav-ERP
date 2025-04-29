@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-gray-900;
+  }
+
+  body {
+    @apply bg-gray-50 text-base antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium leading-tight;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus-visible:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-600 text-white hover:bg-secondary-700 focus-visible:ring-secondary-500;
+  }
+
+  .btn-outline {
+    @apply border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus-visible:ring-primary-500;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-gray-700 hover:bg-gray-100 focus-visible:ring-primary-500;
+  }
+
+  .btn-danger {
+    @apply bg-error-600 text-white hover:bg-error-700 focus-visible:ring-error-500;
+  }
+  
+  .card {
+    @apply rounded-lg border border-gray-200 bg-white shadow-card transition-shadow;
+  }
+  
+  .card-hover {
+    @apply hover:shadow-card-hover;
+  }
+  
+  .input {
+    @apply rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  .select {
+    @apply rounded-md border border-gray-300 bg-white px-3 py-2 pr-8 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  .checkbox {
+    @apply h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500;
+  }
+  
+  .radio {
+    @apply h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500;
+  }
+  
+  .table-container {
+    @apply w-full overflow-hidden rounded-lg border border-gray-200 bg-white;
+  }
+  
+  .table {
+    @apply w-full text-sm;
+  }
+  
+  .table-header {
+    @apply border-b border-gray-200 bg-gray-50;
+  }
+  
+  .table-header-cell {
+    @apply px-4 py-3 text-left font-medium text-gray-500;
+  }
+  
+  .table-body {
+    @apply divide-y divide-gray-200;
+  }
+  
+  .table-row {
+    @apply hover:bg-gray-50;
+  }
+  
+  .table-cell {
+    @apply px-4 py-3 text-gray-900;
+  }
+}
