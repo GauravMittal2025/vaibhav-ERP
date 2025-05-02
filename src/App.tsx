@@ -1,40 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { Layout } from './components/layout/layout';
-import Dashboard from './pages/dashboard';
-import Attendance from './pages/attendance';
-import Inventory from './pages/inventory';
+import React from 'react';
+import { AppProvider, useAppContext } from './context/AppContext';
+import Layout from './components/layout/Layout';
+import Dashboard from './pages/Dashboard';
+import Inventory from './pages/inventory/Inventory';
+import Orders from './pages/orders/Orders';
+import Equipment from './pages/equipment/Equipment';
+import Maintenance from './pages/maintenance/Maintenance';
+import Attendance from './pages/Attendance';
+import Reports from './pages/reports/Reports';
+import Settings from './pages/settings/Settings';
+import Users from './pages/users/Users';
+import Suppliers from './pages/supplier/Supplier';
 
-function App() {
-  const location = useLocation();
-  
-  useEffect(() => {
-    // Update page title based on the current route
-    const pathname = location.pathname;
-    let title = 'Enterprise Resource Planning';
-    
-    if (pathname === '/') {
-      title = 'Dashboard | Enterprise ERP';
-    } else if (pathname === '/attendance') {
-      title = 'Attendance Management | Enterprise ERP';
-    } else if (pathname === '/inventory') {
-      title = 'Inventory Management | Enterprise ERP';
-    } else if (pathname.startsWith('/production')) {
-      title = 'Production Management | Enterprise ERP';
+const MainApp: React.FC = () => {
+  const { currentPage } = useAppContext();
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'dashboard':
+        return <Dashboard />;
+      case 'attendance':
+        return <Attendance/>;
+      case 'inventory':
+        return <Inventory />;
+      case 'orders':
+        return <Orders />;
+      case 'equipment':
+        return <Equipment />;
+      case 'maintenance':
+        return <Maintenance />;
+      case 'reports':
+        return <Reports />;
+      case 'settings':
+        return <Settings />;
+      case 'users':
+        return <Users />;
+      case 'suppliers':
+        return <Suppliers />;
+      default:
+        return <Dashboard />;
     }
-    
-    document.title = title;
-  }, [location]);
+  };
 
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/attendance" element={<Attendance />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="*" element={<Dashboard />} />
-      </Routes>
+      {renderPage()}
     </Layout>
+  );
+};
+
+function App() {
+  return (
+    <AppProvider>
+      <MainApp />
+    </AppProvider>
   );
 }
 

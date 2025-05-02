@@ -1,4 +1,7 @@
-// User types
+export interface Attendance {
+id: string;
+}
+
 export interface User {
   id: string;
   name: string;
@@ -8,155 +11,132 @@ export interface User {
   avatar?: string;
 }
 
-// Attendance types
-export interface AttendanceRecord {
-  id: string;
-  userId: string;
-  date: string;
-  checkIn: string;
-  checkOut: string | null;
-  status: 'present' | 'absent' | 'late' | 'half-day' | 'on-leave';
-  notes?: string;
-}
-
-export interface LeaveRequest {
-  id: string;
-  userId: string;
-  startDate: string;
-  endDate: string;
-  type: 'sick' | 'casual' | 'annual' | 'unpaid' | 'other';
-  reason: string;
-  status: 'pending' | 'approved' | 'rejected';
-  approvedBy?: string;
-  createdAt: string;
-}
-
-// Inventory types
-export interface InventoryItem {
+export interface Product {
   id: string;
   name: string;
-  category: string;
   sku: string;
-  quantity: number;
-  unit: string;
+  category: string;
   price: number;
-  supplier: string;
-  location: string;
+  cost: number;
+  stockQuantity: number;
   reorderLevel: number;
-  lastUpdated: string;
+  supplier: string;
+  lastRestocked: string;
+  status: 'active' | 'discontinued' | 'out_of_stock';
 }
 
-export interface InventoryTransaction {
-  id: string;
-  itemId: string;
-  type: 'inward' | 'outward' | 'adjustment';
-  quantity: number;
-  date: string;
-  performedBy: string;
-  reference: string;
-  notes?: string;
-}
-
-// Store & Maintenance types
-export interface MaintenanceRequest {
-  id: string;
-  title: string;
-  description: string;
-  priority: 'low' | 'medium' | 'high' | 'critical';
-  status: 'open' | 'in-progress' | 'completed' | 'cancelled';
-  assignedTo?: string;
-  requestedBy: string;
-  createdAt: string;
-  completedAt?: string;
-  assets: string[];
-}
-
-// Production types
-export interface ProductionTask {
+export interface Customer {
   id: string;
   name: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-  status: 'planned' | 'in-progress' | 'completed' | 'on-hold';
-  progress: number;
-  assignedTo: string[];
-  priority: 'low' | 'medium' | 'high';
-  materials: {
-    itemId: string;
-    quantity: number;
-  }[];
-}
-
-// Logistics types
-export interface Shipment {
-  id: string;
-  trackingNumber: string;
-  origin: string;
-  destination: string;
-  status: 'pending' | 'in-transit' | 'delivered' | 'cancelled';
-  carrier: string;
-  estimatedDelivery: string;
-  actualDelivery?: string;
-  items: {
-    itemId: string;
-    quantity: number;
-  }[];
-  notes?: string;
-}
-
-// Material & Broker types
-export interface Supplier {
-  id: string;
-  name: string;
-  contactPerson: string;
   email: string;
   phone: string;
   address: string;
-  category: string[];
-  rating: number;
-  active: boolean;
+  totalOrders: number;
+  totalSpent: number;
+  lastPurchase: string;
+  status: 'active' | 'inactive';
 }
 
-// Visitor types
-export interface Visitor {
+export interface Supplier {
   id: string;
   name: string;
-  company?: string;
-  email?: string;
+  contactName: string;
+  email: string;
   phone: string;
-  purpose: string;
-  visitingPerson: string;
-  checkIn: string;
-  checkOut?: string;
-  status: 'checked-in' | 'checked-out' | 'scheduled';
-  badgeNumber?: string;
+  address: string;
+  products: string[];
+  lastOrder: string;
+  paymentTerms: string;
+  status: 'active' | 'inactive';
 }
 
-// Report types
-export interface Report {
+export interface Order {
+  id: string;
+  customer: string;
+  orderDate: string;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  items: OrderItem[];
+  total: number;
+  paymentStatus: 'pending' | 'paid' | 'refunded';
+  shippingAddress: string;
+  trackingNumber?: string;
+}
+
+export interface OrderItem {
+  productId: string;
+  productName: string;
+  quantity: number;
+  unitPrice: number;
+  total: number;
+}
+
+export interface Equipment {
   id: string;
   name: string;
-  type: 'attendance' | 'inventory' | 'production' | 'logistics' | 'finance' | 'custom';
-  createdBy: string;
-  createdAt: string;
-  lastRun?: string;
-  schedule?: 'daily' | 'weekly' | 'monthly' | 'quarterly' | 'yearly';
-  recipients?: string[];
-  parameters?: Record<string, any>;
+  type: string;
+  model: string;
+  serialNumber: string;
+  purchaseDate: string;
+  warranty: string;
+  department: string;
+  lastMaintenance: string;
+  status: 'operational' | 'maintenance' | 'broken' | 'retired';
 }
 
-// Notification types
-export interface Notification {
+export interface MaintenanceTask {
+  id: string;
+  equipmentId: string;
+  equipmentName: string;
+  taskType: 'preventive' | 'corrective' | 'inspection';
+  description: string;
+  assignedTo: string;
+  scheduledDate: string;
+  completedDate?: string;
+  status: 'scheduled' | 'in_progress' | 'completed' | 'cancelled';
+  notes?: string;
+  parts?: MaintenancePart[];
+}
+
+export interface MaintenancePart {
+  id: string;
+  name: string;
+  quantity: number;
+  cost: number;
+}
+
+export interface WorkOrder {
   id: string;
   title: string;
-  message: string;
-  type: 'info' | 'success' | 'warning' | 'error';
-  read: boolean;
-  createdAt: string;
-  userId: string;
-  relatedTo?: {
-    type: string;
-    id: string;
-  };
+  description: string;
+  requestedBy: string;
+  assignedTo: string;
+  priority: 'low' | 'medium' | 'high' | 'urgent';
+  createdDate: string;
+  dueDate: string;
+  completedDate?: string;
+  status: 'open' | 'in_progress' | 'on_hold' | 'completed';
+  category: string;
+  relatedEquipment?: string;
+}
+
+export interface DashboardStats {
+  totalRevenue: number;
+  revenueChange: number;
+  totalOrders: number;
+  ordersChange: number;
+  inventoryValue: number;
+  lowStockItems: number;
+  pendingMaintenance: number;
+  openWorkOrders: number;
+}
+
+export interface ChartData {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    backgroundColor?: string | string[];
+    borderColor?: string | string[];
+    borderWidth?: number;
+  }[];
 }

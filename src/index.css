@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+
+  :root {
+    --color-primary: 221 83 246;
+    --color-secondary: 186 230 253;
+    --color-accent: 251 146 60;
+    --color-success: 132 204 22;
+    --color-warning: 245 158 11;
+    --color-error: 239 68 68;
+  }
+
   html {
     @apply text-gray-900;
   }
@@ -33,6 +43,9 @@
 }
 
 @layer components {
+  .form-input {
+    @apply flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
   .btn {
     @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
   }
@@ -56,7 +69,7 @@
   .btn-danger {
     @apply bg-error-600 text-white hover:bg-error-700 focus-visible:ring-error-500;
   }
-  
+
   .card {
     @apply rounded-lg border border-gray-200 bg-white shadow-card transition-shadow;
   }

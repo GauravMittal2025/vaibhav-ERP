@@ -1,27 +1,32 @@
-import React, { useState } from 'react';
-import { Header } from './header';
-import { Sidebar } from './sidebar';
+import React, { ReactNode } from 'react';
+import Header from './Header';
+import Sidebar from './Sidebar';
+import { useAppContext } from '../../context/AppContext';
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed);
-  };
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { sidebarOpen } = useAppContext();
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <Sidebar collapsed={sidebarCollapsed} onCollapse={setSidebarCollapsed} />
-      <div className="flex flex-1 flex-col overflow-hidden">
-        <Header onMenuToggle={toggleSidebar} />
-        <main className="flex-1 overflow-y-auto p-4 md:p-6">
+      <Sidebar />
+      
+      <div 
+        className={`flex-1 flex flex-col transition-all duration-300 ${
+          sidebarOpen ? 'lg:ml-64' : ''
+        }`}
+      >
+        <Header />
+        
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
           {children}
         </main>
       </div>
     </div>
   );
 };
+
+export default Layout;
