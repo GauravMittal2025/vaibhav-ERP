@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Header from './header';
+import Sidebar from './sidebar';
 import { useAppContext } from '../../context/AppContext';
 
 interface LayoutProps {
