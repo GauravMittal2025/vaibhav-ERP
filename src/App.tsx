@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppProvider, useAppContext } from './context/AppContext';
-import Layout from './components/layout/Layout';
+import Layout from './components/layout/layout';
 import Dashboard from './pages/Dashboard';
 import Inventory from './pages/inventory/Inventory';
 import Orders from './pages/orders/Orders';
