@@ -3,7 +3,7 @@ import { DollarSign, ShoppingCart, Package, AlertTriangle, PenTool as Tool, Clip
 import { useAppContext } from '../context/AppContext';
 import StatCard from '../components/dashboard/StatCard';
 import ChartCard from '../components/dashboard/ChartCard';
-import Card from '../components/ui/Card';
+import Card from '../components/ui/card';
 import ActivityItem from '../components/dashboard/ActivityItem';
 import { formatCurrency } from '../utils/formatters';
 
