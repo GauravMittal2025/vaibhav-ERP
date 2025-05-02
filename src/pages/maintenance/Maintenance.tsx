@@ -8,9 +8,9 @@ import {
   Filter,
   Search
 } from 'lucide-react';
-import Button from '../../components/ui/button';
+import Button from '../../components/ui/Button';
 import Card from '../../components/ui/omniCards/Card';
-import Badge from '../../components/ui/badge';
+import Badge from '../../components/ui/Badge';
 
 interface MaintenanceTask {
   id: string;

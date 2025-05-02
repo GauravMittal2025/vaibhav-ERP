@@ -1,8 +1,8 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent } from '../ui/card';
-import { Badge } from '../ui/badge';
+import { Card, CardContent } from '../ui/Card';
+import { Badge } from '../ui/Badge';
 import { cn } from '../../utils/cn';
 
 interface ModuleCardProps {

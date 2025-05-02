@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Badge from '../ui/badge';
-import Button from '../ui/button';
+import Badge from '../ui/Badge';
+import Button from '../ui/Button';
 import { Edit, Trash2, ChevronDown, ChevronUp, Search, Filter, Download } from 'lucide-react';
 
 interface InventoryItem {

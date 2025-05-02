@@ -6,10 +6,10 @@ import {
 } from 'lucide-react';
 import { 
   Card, CardHeader, CardTitle, CardContent 
-} from '../../components/ui/card';
-import { Button } from '../../components/ui/button';
-import { Badge } from '../../components/ui/badge';
-import { Avatar } from '../../components/ui/avatar';
+} from '../../components/ui/Card';
+import { Button } from '../../components/ui/Button';
+import { Badge } from '../../components/ui/Badge';
+import { Avatar } from '../../components/ui/Avatar';
 import { format } from 'date-fns';
 
 export const Attendance = () => {
