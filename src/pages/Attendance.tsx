@@ -9,7 +9,7 @@ import {
 } from '../components/ui/attendanceCard';
 import { Button } from '../components/ui/att_btn';
 import { Badge } from '../components/ui/att_badge';
-import { Avatar } from '../components/ui/Avatar';
+import { Avatar } from '../components/ui/avatar';
 import { format } from 'date-fns';
 
 export const Attendance = () => {

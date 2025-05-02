@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Plus, Search, Edit, Trash2, UserPlus, Users as UsersIcon, ShieldCheck, Key } from 'lucide-react';
-import Button from '../../components/ui/Button';
+import Button from '../../components/ui/button';
 import Card from '../../components/ui/omniCards/Card';
-import Badge from '../../components/ui/Badge';
+import Badge from '../../components/ui/badge';
 
 interface User {
   id: string;
