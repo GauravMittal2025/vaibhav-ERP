@@ -5,7 +5,7 @@ import {
   Truck, Users, Settings, Bell, BoxesIcon, ListChecks, Building2,
   UsersRound, FileBarChart, MessageCircle
 } from 'lucide-react';
-import { cn } from '../../utils/cn';
+import { cn } from '../../../utils/cn';
 
 interface NavItem {
   title: string;

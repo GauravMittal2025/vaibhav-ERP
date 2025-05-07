@@ -4,9 +4,9 @@ import {
   BoxesIcon, Building2, Layers, ListChecks, UsersRound, FileBarChart,
   MessageCircle
 } from 'lucide-react';
-import { StatsCard } from '../../components/dashboard/stats-card';
-import { ModuleCard } from '../../components/dashboard/module-card';
-import { ChartCard } from '../../components/dashboard/chart-card';
+import { StatsCard } from '../../components/post-auth/dashboard/stats-card';
+import { ModuleCard } from '../../components/post-auth/dashboard/module-card';
+import { ChartCard } from '../../components/post-auth/dashboard/chart-card';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 

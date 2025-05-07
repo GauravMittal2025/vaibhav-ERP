@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Plus, FileText, BarChart2, Truck } from 'lucide-react';
-import Button from '../../components/ui/Button';
-import Card from '../../components/ui/omniCards/Card';
-import InventoryTable from '../../components/inventory/InventoryTable';
+import Button from '../../components/post-auth/ui/Button';
+import Card from '../../components/post-auth/ui/omniCards/Card';
+import InventoryTable from '../../components/post-auth/inventory/InventoryTable';
 
 // Sample inventory data
 const inventoryItems = [

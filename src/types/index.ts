@@ -140,3 +140,41 @@ export interface ChartData {
     borderWidth?: number;
   }[];
 }
+
+export interface Employee {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  position: string;
+  department: string;
+  hireDate: string;
+  salary: number;
+  status: 'active' | 'inactive' | 'on leave';
+  avatar?: string;
+}
+
+export interface Department {
+  id: string;
+  name: string;
+  description: string;
+  manager: string | null;
+  employeeCount: number;
+}
+
+export interface Statistics {
+  totalEmployees: number;
+  activeEmployees: number;
+  departmentCounts: Record<string, number>;
+  avgSalary: number;
+  newHires: number;
+}
+
+export type NotificationType = 'success' | 'error' | 'warning' | 'info';
+
+export interface Notification {
+  id: string;
+  type: NotificationType;
+  message: string;
+}

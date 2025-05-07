@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Save, Bell, Lock, User, Globe, Palette, Moon, Sun } from 'lucide-react';
-import Button from '../../components/ui/Button';
-import Card from '../../components/ui/omniCards/Card';
+import Button from '../../components/post-auth/ui/Button';
+import Card from '../../components/post-auth/ui/omniCards/Card';
 
 function Settings() {
   const [theme, setTheme] = useState('light');

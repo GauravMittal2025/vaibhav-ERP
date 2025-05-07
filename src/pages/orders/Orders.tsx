@@ -5,9 +5,9 @@ import {
   PackageX, CreditCard 
 } from 'lucide-react';
 import { useAppContext } from '../../context/AppContext';
-import Button from '../../components/ui/Button';
-import Card from '../../components/ui/Card';
-import Badge from '../../components/ui/Badge';
+import Button from '../../components/post-auth/ui/Button';
+import Card from '../../components/post-auth/ui/Card';
+import Badge from '../../components/post-auth/ui/Badge';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 
 const Orders: React.FC = () => {

@@ -22,8 +22,8 @@ import {
   LineChart,
   Line,
 } from 'recharts';
-import Button from '../../components/ui/Button';
-import Card from '../../components/ui/omniCards/Card';
+import Button from '../../components/post-auth/ui/Button';
+import Card from '../../components/post-auth/ui/omniCards/Card';
 
 // Sample data
 const inventoryData = [

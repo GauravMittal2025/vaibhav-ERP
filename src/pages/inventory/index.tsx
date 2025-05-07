@@ -5,9 +5,9 @@ import {
 } from 'lucide-react';
 import {
   Card, CardHeader, CardTitle, CardContent,
-} from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { Badge } from '../../components/ui/Badge';
+} from '../../components/post-auth/ui/Card';
+import { Button } from '../../components/post-auth/ui/Button';
+import { Badge } from '../../components/post-auth/ui/Badge';
 import Chart from 'react-apexcharts';
 import { ApexOptions } from 'apexcharts';
 
