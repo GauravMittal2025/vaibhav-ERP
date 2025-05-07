@@ -95,7 +95,7 @@ const LoginForm: React.FC = () => {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
-            <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
+            <Link to="/signup" className="font-medium text-blue-600 hover:text-blue-500">
               create a new account
             </Link>
           </p>
@@ -192,9 +192,9 @@ const LoginForm: React.FC = () => {
             </div>
 
             <div className="text-sm">
-              <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+              <Link to="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500">
                 Forgot your password?
-              </a>
+              </Link>
             </div>
           </div>
 
