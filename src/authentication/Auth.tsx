@@ -20,6 +20,13 @@ import Reports from '../pages/reports/Reports';
 import Settings from '../pages/settings/Settings';
 import Users from '../pages/users/Users';
 import Profile from '../pages/Profile';
+import { UserList } from '../roles/features/users/UserList';
+import { UserDetails } from '../roles/features/users/UserDetails';
+import { UserForm } from '../roles/features/users/UserForm';
+import { RoleList } from '../roles/features/roles/RoleList';
+import { RoleDetails } from '../roles/features/roles/RoleDetails';
+import { RoleForm } from '../roles/features/roles/RoleForm';
+import { PermissionList } from '../roles/features/permissions/PermissionList';
 
 function Auth() {
   return (
@@ -46,6 +53,23 @@ function Auth() {
               element={ <Profile />} 
             />
           </Route>
+
+          {/* Role management */}
+          <Route element={<ProtectedRoute allowedRoles={['admin', 'manager','guard', 'supervisor', 'sr-supervisor', 'driver']} />}>
+            <Route path="/users-management" element={<UserList />} />
+            <Route path="/users/:id" element={<UserDetails />} />
+            <Route path="/users/create" element={<UserForm />} />
+            <Route path="/users/:id/edit" element={<UserForm />} />
+
+            <Route path="/roles" element={<RoleList />} />
+            <Route path="/roles/:id" element={<RoleDetails />} />
+            <Route path="/roles/create" element={<RoleForm />} />
+            <Route path="/roles/:id/edit" element={<RoleForm />} />
+            
+            {/* Permission routes */}
+            <Route path="/permissions" element={<PermissionList />} />
+          </Route>
+
           {/* attendance management routes starts here */}
           <Route element={<ProtectedRoute allowedRoles={['admin', 'supervisor', 'sr-supervisor', 'guard', 'driver']}/>}>
             <Route

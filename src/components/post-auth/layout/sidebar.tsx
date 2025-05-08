@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { cn } from '../../../utils/cn';
 import { 
   LayoutDashboard, 
   Package, 
@@ -11,10 +12,13 @@ import {
   Settings, 
   LogOut,
   ChevronRight,
-  User
+  User,
+  ChevronDown,
+  ShieldCheck,
+  Key
 } from 'lucide-react';
 import { useAppContext } from '../../../context/AppContext';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { CustomersArr, EmpAllowedArr, InventoryArr, MaintenanceAllowedArr, OrdersArr, ReportsAllowedArr, StoreManagementAllowedArr, SuppliersArr, userRoles, UsersAllowedArr } from '../../../types/auth';
 
@@ -26,6 +30,21 @@ interface SidebarItemProps {
   isVisible:string;
   hasSubmenu?: boolean;
   onClick?: () => void;
+}
+
+interface NavGroupProps {
+  label: string;
+  isVisible:string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}
+
+interface NavItemProps {
+  to: string;
+  icon: React.ReactNode;
+  label: string;
+  end?: boolean;
+  isVisible:string;
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({ 
@@ -61,6 +80,47 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     </Link>
   );
 };
+
+const NavGroup: React.FC<NavGroupProps> = ({ label, icon, isVisible, children }) => {
+  const [isOpen, setIsOpen] = useState(true);
+  
+  return (
+    <div className="mb-1" style={{display:isVisible}}>
+      <button
+        className="flex items-center justify-between w-full px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-blue-600 rounded-md"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="flex items-center">
+          <span className="mr-3">{icon}</span>
+          {label}
+        </div>
+        {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+      </button>
+      
+      {isOpen && (
+        <div className="mt-1 ml-4 pl-4 border-l border-gray-200">
+          {children}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const NavItem: React.FC<NavItemProps> = ({ to, icon, label, end = false }) => (
+  <NavLink
+    to={to}
+    end={end}
+    className={({ isActive }) => cn(
+      'flex items-center px-4 py-2.5 text-sm font-medium rounded-md transition-colors',
+      isActive 
+        ? 'bg-blue-50 text-blue-700' 
+        : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+    )}
+  >
+    <span className="mr-3">{icon}</span>
+    {label}
+  </NavLink>
+);
 
 const Sidebar: React.FC = () => {
   const { sidebarOpen, currentPage, setCurrentPage } = useAppContext();
@@ -108,6 +168,44 @@ const Sidebar: React.FC = () => {
             onClick={() => setCurrentPage('profile')}
           />
 
+          {/* role management */}
+
+          <div className="pt-4 pb-2" style={{display: (UsersAllowedArr.some(role => user?.role.includes(role)) ? 'block' : 'none' )}}>
+            <div className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Role Management
+            </div>
+          </div>
+
+          <NavGroup 
+            label="User Management" 
+            isVisible={UsersAllowedArr.some(role => user?.role.includes(role)) ? 'block' : 'none'}
+            icon={<Users size={18} />}
+          >
+            <NavItem
+              to="/users-management"
+              icon={<Users size={16} />}
+              label="Users"
+            />
+          </NavGroup>
+          
+          <NavGroup 
+            isVisible={UsersAllowedArr.some(role => user?.role.includes(role)) ? 'block' : 'none'}
+            label="Access Control" 
+            icon={<ShieldCheck size={18} />}
+          >
+            <NavItem
+              to="/roles"
+              icon={<ShieldCheck size={16} />}
+              label="Roles"
+            />
+            <NavItem
+              to="/permissions"
+              icon={<Key size={16} />}
+              label="Permissions"
+            />
+          </NavGroup>
+
+          {/* employee management */}
           <div className="pt-4 pb-2" style={{display: (EmpAllowedArr.some(role => user?.role.includes(role)) ? 'block' : 'none' )}}>
             <div className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
               Employee Management
